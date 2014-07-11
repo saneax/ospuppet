@@ -4,7 +4,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = "puppetlabs/ubuntu-12.04-64-puppet"
+    config.vm.box = "ubuntu/trusty64"
 #      controller.vm.box = "ubuntu/trusty64"
     config.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "puppet/manifests"
@@ -18,8 +18,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ct1.vm.network "private_network", ip: "172.16.11.21"
       ct1.vm.hostname = "ct1"
       config.vm.provider "virtualbox" do |v|
-        v.memory = 8192
-        v.cpus = 4
+        v.memory = 2048
+        v.cpus = 2
         v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
       end
     end
@@ -28,8 +28,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       nt1.vm.network "private_network", ip: "172.16.11.22"
       nt1.vm.hostname = "nt1"
       config.vm.provider "virtualbox" do |v|
-        v.memory = 2048
-        v.cpus = 2
+        v.memory = 512
+        v.cpus = 1
         v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
       end
     end
@@ -38,8 +38,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       nd1.vm.network "private_network", ip: "172.16.11.23"
       nd1.vm.hostname = "nd1"
       config.vm.provider "virtualbox" do |v|
-        v.memory = 4096
-        v.cpus = 4
+        v.memory = 1024
+        v.cpus = 2
         v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
       end
     end
@@ -48,22 +48,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       nd2.vm.network "private_network", ip: "172.16.11.24"
       nd2.vm.hostname = "nd2"
       config.vm.provider "virtualbox" do |v|
-        v.memory = 4096
-        v.cpus = 4
+        v.memory = 1024
+        v.cpus = 2
         v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
       end
     end
 
 
-    config.vm.define "nd3" do |nd3|
-      nd3.vm.network "private_network", ip: "172.16.11.25"
-      nd3.vm.hostname = "nd3"
-      config.vm.provider "virtualbox" do |v|
-        v.memory = 4096
-        v.cpus = 4
-        v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
-      end
-    end
+#    config.vm.define "nd3" do |nd3|
+#    nd3.vm.network "private_network", ip: "172.16.11.25"
+#     nd3.vm.hostname = "nd3"
+#     config.vm.provider "virtualbox" do |v|
+#       v.memory = 1024
+#       v.cpus = 2
+#       v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+#     end
+#   end
 
 end
 

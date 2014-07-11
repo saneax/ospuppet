@@ -9,19 +9,19 @@ class system {
 	ensure => present,
   }
 
-  file { "/etc/environment":
-	content => template ('system/environment.erb'),
-	ensure => present,
-  }
+#  file { "/etc/environment":
+#	content => template ('system/environment.erb'),
+#	ensure => present,
+#  }
 
 
 #Packages install
 
   $enhancer_packages = [ "mtr-tiny", "tcpdump", "screen", "vim", "emacs23-nox", "curl", "rsync", "lynx" ]
-  package { $enhancer_packages: ensure => "installed", require => Exec['/usr/bin/apt-get update'] }
+  package { $enhancer_packages: ensure => "installed", }
   
   class { '::ntp':
-        servers  => [ '172.16.11.1' ],
+        servers  => [ '1.in.pool.ntp.org', '1.asia.pool.ntp.org' ],
         restrict => [ '127.0.0.1' ],
   }
 
@@ -29,18 +29,18 @@ class system {
 #Essential Proxy services install
 
 
-  exec { "/usr/bin/apt-get update":
-    require => File['/etc/apt/sources.list'],
-  }
+#  exec { "/usr/bin/apt-get update":
+#    require => File['/etc/apt/sources.list'],
+#  }
   
-  file { '/etc/apt/sources.list':
-    source => 'puppet:///modules/system/sources.list',
-    require => File['/etc/apt/apt.conf']
-  }
+#  file { '/etc/apt/sources.list':
+#    source => 'puppet:///modules/system/sources.list',
+#    require => File['/etc/apt/apt.conf']
+#  }
   
-  file { '/etc/apt/apt.conf':
-    source => 'puppet:///modules/system/apt.conf'
-  }
+#  file { '/etc/apt/apt.conf':
+#    source => 'puppet:///modules/system/apt.conf'
+#  }
 
         
 

@@ -1,11 +1,11 @@
-deb [arch=amd64]  http://10.135.96.60/ubuntu/ precise main restricted
-deb [arch=amd64]  http://10.135.96.60/ubuntu/ precise-updates main restricted
-deb [arch=amd64]  http://10.135.96.60/ubuntu/ precise multiverse
-deb [arch=amd64]  http://10.135.96.60/ubuntu/ precise-updates multiverse
-#deb [arch=amd64]  http://10.135.96.60/ubuntu/ precise-backports main restricted universe multiverse
-deb [arch=amd64]  http://10.135.96.60/ubuntu precise-security main restricted
-deb [arch=amd64]  http://10.135.96.60/ubuntu precise-security universe
-deb [arch=amd64]  http://10.135.96.60/ubuntu precise-security multiverse
+deb [arch=amd64]  http://172.16.11.1/ubuntu/ trusty main restricted
+deb [arch=amd64]  http://172.16.11.1/ubuntu/ trusty-updates main restricted
+deb [arch=amd64]  http://172.16.11.1/ubuntu/ trusty multiverse
+deb [arch=amd64]  http://172.16.11.1/ubuntu/ trusty-updates multiverse
+deb [arch=amd64]  http://172.16.11.1/ubuntu/ trusty-backports main restricted universe multiverse
+deb [arch=amd64]  http://172.16.11.1/ubuntu trusty-security main restricted
+deb [arch=amd64]  http://172.16.11.1/ubuntu trusty-security universe
+deb [arch=amd64]  http://172.16.11.1/ubuntu trusty-security multiverse
 
-deb [arch=amd64] http://10.135.96.60/puppetlabs precise main
-deb [arch=amd64] http://10.135.96.60/cloud precise-updates havana/main cloud-tools/main icehouse/main
+deb [arch=amd64] http://172.16.11.1/puppetlabs trusty main
+deb [arch=amd64] http://172.16.11.1/cloud trusty-updates havana/main cloud-tools/main icehouse/main
