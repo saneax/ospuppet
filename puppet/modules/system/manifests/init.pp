@@ -17,9 +17,15 @@ class system {
 
 #Packages install
 
-  $enhancer_packages = [ "mtr-tiny", "tcpdump", "screen", "vim", "emacs23-nox", "curl", "rsync", "lynx" ]
+  $enhancer_packages = [ "mtr-tiny", "tcpdump", "screen", "vim", "emacs23-nox", "curl", "rsync", "lynx", "git", "python-pip", "build-essential", "python-dev" ]
   package { $enhancer_packages: ensure => "installed", }
   
+#sudo pip install Glances
+#sudo pip install PySensors
+
+  $pip_packages = [ "Glances", "PySensors" ]
+  package { $pip_packages: ensure => "installed", provider => "pip" }
+
   class { '::ntp':
         servers  => [ '1.in.pool.ntp.org', '1.asia.pool.ntp.org' ],
         restrict => [ '127.0.0.1' ],
