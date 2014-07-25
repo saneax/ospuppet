@@ -1,5 +1,7 @@
 class system {
 #Other System commands
+  $repo_host = "172.16.11.1"
+
   file { "/etc/apt/sources.list.d/puppetlabs.list":
 	ensure => absent,
   }
@@ -14,10 +16,23 @@ class system {
 #	ensure => present,
 #  }
 
+  exec { "/usr/bin/apt-get update":
+    require => File['/etc/apt/sources.list'],
+  }
+
+  file { '/etc/apt/sources.list':
+    content => template ('system/sources.list.erb'),
+#    require => File['/etc/apt/apt.conf']
+  }
+  
+#  file { '/etc/apt/apt.conf':
+#    source => 'puppet:///modules/system/apt.conf'
+#  }
+
 
 #Packages install
 
-  $enhancer_packages = [ "mtr-tiny", "tcpdump", "screen", "vim", "emacs23-nox", "curl", "rsync", "lynx", "git", "python-pip", "build-essential", "python-dev" ]
+  $enhancer_packages = [ "mtr-tiny", "tcpdump", "screen", "vim", "emacs23-nox", "curl", "rsync", "lynx", "git", "python-pip", "libsensors4-dev", "libsensors4", "build-essential", "python-dev" ]
   package { $enhancer_packages: ensure => "installed", }
   
 #sudo pip install Glances
@@ -32,23 +47,7 @@ class system {
   }
 
 
-#Essential Proxy services install
-
-
-#  exec { "/usr/bin/apt-get update":
-#    require => File['/etc/apt/sources.list'],
-#  }
-  
-#  file { '/etc/apt/sources.list':
-#    source => 'puppet:///modules/system/sources.list',
-#    require => File['/etc/apt/apt.conf']
-#  }
-  
-#  file { '/etc/apt/apt.conf':
-#    source => 'puppet:///modules/system/apt.conf'
-#  }
-
-        
+   
 
 #Accounts
   realize System::Account[sanjayu]
