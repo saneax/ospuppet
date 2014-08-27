@@ -39,7 +39,7 @@ class system {
 #sudo pip install PySensors
 
   $pip_packages = [ "Glances", "PySensors" ]
-  package { $pip_packages: ensure => "installed", provider => "pip" }
+  package { $pip_packages: ensure => "installed", provider => "pip", require => Package[$enhancer_packages], }
 
   class { '::ntp':
         servers  => [ '1.in.pool.ntp.org', '1.asia.pool.ntp.org' ],

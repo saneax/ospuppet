@@ -1,8 +1,8 @@
-node "ct1" {
-
-        include system
-
-}
+#node "ct1" {
+#
+#        include system
+#
+#}
 
 
 node /\w+\d$/ {
