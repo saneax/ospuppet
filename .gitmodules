@@ -4,9 +4,21 @@
 [submodule "puppet/modules/stdlib"]
 	path = puppet/modules/stdlib
 	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
-[submodule "puppet/modules/postgresql"]
-	path = puppet/modules/postgresql
-	url = https://github.com/puppetlabs/puppetlabs-postgresql.git
 [submodule "puppet/modules/ntp"]
 	path = puppet/modules/ntp
 	url = https://github.com/puppetlabs/puppetlabs-ntp.git
+[submodule "puppet/modules/concat"]
+	path = puppet/modules/concat
+	url = https://github.com/puppetlabs/puppetlabs-concat.git
+[submodule "puppet/modules/keystone"]
+	path = puppet/modules/keystone
+	url = https://github.com/stackforge/puppet-keystone.git
+[submodule "puppet/modules/mysql"]
+	path = puppet/modules/mysql
+	url = https://github.com/puppetlabs/puppetlabs-mysql.git
+[submodule "puppet/modules/openstack"]
+	path = puppet/modules/openstack
+	url = https://github.com/puppetlabs/puppetlabs-openstack.git
+[submodule "puppet/modules/openstacklib"]
+	path = puppet/modules/openstacklib
+	url = https://github.com/stackforge/puppet-openstacklib.git

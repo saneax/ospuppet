@@ -14,14 +14,10 @@ class system  {
     require => File['/etc/apt/sources.list'],
   }
 
-  file { '/etc/apt/sources.list':
-    content => template ('system/sources.list.erb'),
-  }
-  
-#  file { '/etc/apt/apt.conf':
-#    source => 'puppet:///modules/system/apt.conf'
+#  file { '/etc/apt/sources.list':
+#    content => template ('system/sources.list.erb'),
 #  }
-
+  
 
 #Packages install
 
