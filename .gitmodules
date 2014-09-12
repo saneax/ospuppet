@@ -1,0 +1,6 @@
+[submodule "puppet/modules/sudo"]
+	path = puppet/modules/sudo
+	url = https://github.com/saz/puppet-sudo.git
+[submodule "puppet/modules/stdlib"]
+	path = puppet/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
