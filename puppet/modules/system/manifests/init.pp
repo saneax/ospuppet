@@ -1,20 +1,14 @@
-class system {
-#Other System commands
-  $repo_host = "172.16.11.1"
-
+class system  {
   file { "/etc/apt/sources.list.d/puppetlabs.list":
 	ensure => absent,
   }
-  
+ 
+#hosts file requires variable $hostname, which is taken from facter 
   file { "/etc/hosts":
 	content => template('system/hosts.erb'),
 	ensure => present,
   }
 
-#  file { "/etc/environment":
-#	content => template ('system/environment.erb'),
-#	ensure => present,
-#  }
 
   exec { "/usr/bin/apt-get update":
     require => File['/etc/apt/sources.list'],
@@ -22,7 +16,6 @@ class system {
 
   file { '/etc/apt/sources.list':
     content => template ('system/sources.list.erb'),
-#    require => File['/etc/apt/apt.conf']
   }
   
 #  file { '/etc/apt/apt.conf':
