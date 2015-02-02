@@ -1,0 +1,1 @@
+{"virtualbox":{"/etc/puppet":{"guestpath":"/etc/puppet","hostpath":"/home/sanjayu/projectvm/ospuppet/puppet","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/sanjayu/projectvm/ospuppet","disabled":false}}}

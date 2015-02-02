@@ -1,16 +1,16 @@
 #Template file for sources.list
 #==============================
-deb [arch=amd64]  http://<%= @repo_host %>/ubuntu trusty main restricted
-deb [arch=amd64]  http://<%= @repo_host %>/ubuntu trusty-updates main restricted
-deb [arch=amd64]  http://<%= @repo_host %>/ubuntu trusty multiverse
-deb [arch=amd64]  http://<%= @repo_host %>/ubuntu trusty-updates multiverse
-deb [arch=amd64]  http://<%= @repo_host %>/ubuntu trusty-backports main restricted universe multiverse
-deb [arch=amd64]  http://<%= @repo_host %>/ubuntu trusty-security main restricted
-deb [arch=amd64]  http://<%= @repo_host %>/ubuntu trusty-security universe
-deb [arch=amd64]  http://<%= @repo_host %>/ubuntu trusty-security multiverse
+deb [arch=amd64]  http://<%= @repo_server %>/ubuntu trusty main restricted
+deb [arch=amd64]  http://<%= @repo_server %>/ubuntu trusty-updates main restricted
+deb [arch=amd64]  http://<%= @repo_server %>/ubuntu trusty multiverse
+deb [arch=amd64]  http://<%= @repo_server %>/ubuntu trusty-updates multiverse
+deb [arch=amd64]  http://<%= @repo_server %>/ubuntu trusty-backports main restricted universe multiverse
+deb [arch=amd64]  http://<%= @repo_server %>/ubuntu trusty-security main restricted
+deb [arch=amd64]  http://<%= @repo_server %>/ubuntu trusty-security universe
+deb [arch=amd64]  http://<%= @repo_server %>/ubuntu trusty-security multiverse
 
-deb [arch=amd64] http://<%= @repo_host %>/puppetlabs trusty main
+deb [arch=amd64] http://<%= @repo_server %>/puppetlabs trusty main
 
 <% if @lsbdistcodename == "precise" %> 
-deb [arch=amd64] http://<%= @repo_host %>/cloud precise-updates havana/main cloud-tools/main icehouse/main
+deb [arch=amd64] http://<%= @repo_server %>/cloud precise-updates havana/main cloud-tools/main icehouse/main
 <% end %>

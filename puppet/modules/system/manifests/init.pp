@@ -1,28 +1,41 @@
-class system  {
-  file { "/etc/apt/sources.list.d/puppetlabs.list":
-	ensure => absent,
-  }
- 
-#hosts file requires variable $hostname, which is taken from facter 
-  file { "/etc/hosts":
-	content => template('system/hosts.erb'),
-	ensure => present,
-  }
+class system ( 
+    $repo_server = "UNSET" 
+    ) {
+        notice "repo server data from hiera $repo_host"
+        #172.16.11.1 is the repo server locally
+        if $repo_server == 'UNSET' {
+                fail("To install repo server, you need to populate the $repo_server variable")
+        } else {
+            file { '/etc/apt/sources.list':
+                content => template ('system/sources.list.erb'),
+            ensure => "present",
+            }
+        }
+        
+        file { "/etc/apt/sources.list.d/puppetlabs.list":
+            ensure => absent,
+        }
+
+        file { "/etc/hosts":
+            content => template('system/hosts.erb'),
+            ensure => present,
+         }
 
 
-  exec { "/usr/bin/apt-get update":
-    require => File['/etc/apt/sources.list'],
-  }
+        exec { "/usr/bin/apt-get update":
+            require => File['/etc/apt/sources.list'],
+         }
 
-#  file { '/etc/apt/sources.list':
-#    content => template ('system/sources.list.erb'),
-#  }
-  
+
 
 #Packages install
 
   $enhancer_packages = [ "mtr-tiny", "tcpdump", "screen", "vim", "emacs23-nox", "curl", "rsync", "lynx", "git", "python-pip", "libsensors4-dev", "libsensors4", "build-essential", "python-dev" ]
-  package { $enhancer_packages: ensure => "installed", }
+  package { 
+    $enhancer_packages: 
+        ensure => "installed", 
+        require => Exec['/usr/bin/apt-get update'] 
+    }
   
 #sudo pip install Glances
 #sudo pip install PySensors
