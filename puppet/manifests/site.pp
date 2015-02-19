@@ -1,15 +1,16 @@
-node "ct1" {
+#node "ct1" {
 
-  include system
-  class {
-    'mysql::server':
-  }
+#  include system
+
+#  class {
+#    'mysql::server':
+#  }
 
 
-  class { 'keystone::db::mysql':
-    password      => 'super_secret_db_password',
-    allowed_hosts => '%',
-  }
+  #class { 'keystone::db::mysql':
+  #  password      => 'super_secret_db_password',
+  #  allowed_hosts => '%',
+  #}
 
   #class { 'keystone':
   #	verbose        => True,
@@ -18,6 +19,8 @@ node "ct1" {
   #	sql_connection => 'mysql://keystone:super_secret_db_password@ct1.os.loc/keystone',
   #}
 
-  }
+#  }
+
+class { "ntp": }
 
 

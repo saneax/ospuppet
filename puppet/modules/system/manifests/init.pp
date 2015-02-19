@@ -1,57 +1,55 @@
-class system ( 
-    $repo_server = "UNSET" 
-    ) {
-        notice "repo server data from hiera $repo_host"
-        #172.16.11.1 is the repo server locally
-        if $repo_server == 'UNSET' {
-                fail("To install repo server, you need to populate the $repo_server variable")
-        } else {
-            file { '/etc/apt/sources.list':
-                content => template ('system/sources.list.erb'),
-            ensure => "present",
-            }
-        }
-        
-        file { "/etc/apt/sources.list.d/puppetlabs.list":
-            ensure => absent,
-        }
+class system  {
+  notice "repo server data from hiera $::system::repo_server"
+  #172.16.11.1 is the repo server locally
+  if $repo_server == 'UNSET' {
+    fail("To install repo server, you need to populate the $repo_server variable")
+  } else {
+    file { '/etc/apt/sources.list':
+      content => template ('system/sources.list.erb'),
+      ensure => "present",
+    }
+  }
 
-        file { "/etc/hosts":
-            content => template('system/hosts.erb'),
-            ensure => present,
-         }
+  file { "/etc/apt/sources.list.d/puppetlabs.list":
+    ensure => absent,
+  }
+
+  file { "/etc/hosts":
+    content => template('system/hosts.erb'),
+    ensure => present,
+  }
 
 
-        exec { "/usr/bin/apt-get update":
-            require => File['/etc/apt/sources.list'],
-         }
+  exec { "/usr/bin/apt-get update":
+    require => File['/etc/apt/sources.list'],
+  }
 
 
 
-#Packages install
+  #Packages install
 
   $enhancer_packages = [ "mtr-tiny", "tcpdump", "screen", "vim", "emacs23-nox", "curl", "rsync", "lynx", "git", "python-pip", "libsensors4-dev", "libsensors4", "build-essential", "python-dev" ]
   package { 
-    $enhancer_packages: 
-        ensure => "installed", 
-        require => Exec['/usr/bin/apt-get update'] 
-    }
-  
-#sudo pip install Glances
-#sudo pip install PySensors
+  $enhancer_packages: 
+  ensure => "installed", 
+  require => Exec['/usr/bin/apt-get update'] 
+  }
+
+  #sudo pip install Glances
+  #sudo pip install PySensors
 
   $pip_packages = [ "Glances", "PySensors" ]
   package { $pip_packages: ensure => "installed", provider => "pip", require => Package[$enhancer_packages], }
 
   class { '::ntp':
-        servers  => [ '1.in.pool.ntp.org', '1.asia.pool.ntp.org' ],
-        restrict => [ '127.0.0.1' ],
+    servers  => [ '1.in.pool.ntp.org', '1.asia.pool.ntp.org' ],
+    restrict => [ '127.0.0.1' ],
   }
 
 
-   
 
-#Accounts
+
+  #Accounts
   realize System::Account[sanjayu]
 
   class { 'sudo':
@@ -70,9 +68,9 @@ class system (
   }
 
   group { 'sudo':
-        name => 'sudo',
-        ensure => present,
-        members => "sanjayu",
+    name => 'sudo',
+    ensure => present,
+    members => "sanjayu",
   }
 
 }

@@ -1,2 +1,9 @@
 ---
-system::repo_server: 172.16.11.1 
+ntp::autoupdate: false
+ntp::enable: true
+ntp::servers:
+  - ct1 iburst
+  - nt1 iburst
+system::apt:
+system::http_proxy: http://10.135.80.164:8678/
+system::https_proxy: https://10.135.80.164:8678/
