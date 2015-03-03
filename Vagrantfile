@@ -2,9 +2,9 @@
 # vi: set ft=ruby :
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 Vagrant.require_version ">= 1.6.0"
-VAGRANTFILE_API_VERSION = "2" 
+VAGRANTFILE_API_VERSION = "2"
 
-#Load Yaml libraries 
+#Load Yaml libraries
 require 'yaml'
 
 servers = YAML.load_file('servers.yaml')
@@ -12,7 +12,7 @@ servers = YAML.load_file('servers.yaml')
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = "ubuntu/trusty64"
-    
+
     servers.each do |servers|
         config.vm.define servers["name"] do |srv|
             srv.vm.box = servers["box"]
@@ -28,9 +28,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
         config.vm.synced_folder("puppet/", "/etc/puppet/")
         config.vm.provision 'shell', :inline =>
-         'cp /etc/puppet/hiera.yaml /etc/hiera.yaml' 
+         'cp /etc/puppet/hiera.yaml /etc/hiera.yaml'
         config.vm.provision 'shell', :inline =>
-        'puppet apply --verbose --logdest syslog --modulepath /etc/puppet/modules /etc/puppet/manifests/site.pp' 
+        'puppet apply --verbose --logdest syslog --modulepath /etc/puppet/modules /etc/puppet/manifests/site.pp'
     end
-end 
+end
 

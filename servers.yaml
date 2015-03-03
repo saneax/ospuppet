@@ -1,29 +1,50 @@
 ---
 - name: ct1
   box: ubuntu/trusty64
-  ram: 2048
-  vcpu: 2
+  ram: 8096
+  vcpu: 4
   ip1: 172.16.11.21
   ip2: 172.16.12.21
   ip3: 172.16.13.21
 - name: nt1
   box: ubuntu/trusty64
-  ram: 512
-  vcpu: 1
+  ram: 2048
+  vcpu: 2
   ip1: 172.16.11.22
   ip2: 172.16.12.22
   ip3: 172.16.13.22
 - name: nd1
   box: ubuntu/trusty64
-  ram: 1024
-  vcpu: 2
+  ram: 8096
+  vcpu: 4
   ip1: 172.16.11.23
   ip2: 172.16.12.23
   ip3: 172.16.13.23
 - name: nd2
   box: ubuntu/trusty64
-  ram: 1024
-  vcpu: 2
+  ram: 8096
+  vcpu: 4
   ip1: 172.16.11.24
   ip2: 172.16.12.24
   ip3: 172.16.13.24
+- name: bs1
+  box: ubuntu/trusty64
+  ram: 2048
+  vcpu: 2
+  ip1: 172.16.11.25
+  ip2: 172.16.12.25
+  ip3: 172.16.13.25
+- name: os1
+  box: ubuntu/trusty64
+  ram:  2048
+  vcpu: 2
+  ip1: 172.16.11.26
+  ip2: 172.16.12.26
+  ip3: 172.16.13.26
+- name: os2
+  box: ubuntu/trusty64
+  ram: 2048
+  vcpu: 2
+  ip1: 172.16.11.27
+  ip2: 172.16.12.27
+  ip3: 172.16.13.27
