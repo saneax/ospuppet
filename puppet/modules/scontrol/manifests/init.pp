@@ -1,0 +1,3 @@
+class scontrol {
+  class { "ntp": }
+}

@@ -2,4 +2,6 @@
 .vagrant/*
 *~
 *.swp
-modules
+puppet/modules/*
+!puppet/modules/system
+!puppet/modules/scontrol
