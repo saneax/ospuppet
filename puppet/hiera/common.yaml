@@ -2,14 +2,59 @@
 ntp::autoupdate: false
 ntp::enable: true
 ntp::servers:
-  - ct1 iburst
-  - nt1 iburst
-system::apt:
-system::http_proxy: http://10.135.80.164:8678/
-system::https_proxy: https://10.135.80.164:8678/
+  - 0.in.pool.ntp.org
+  - 1.asia.pool.ntp.org
+  - 0.asia.pool.ntp.org
+ntp::restrict:
+  - 127.0.0.1
 
 scontrol::accounts::localusers:
   sanjayu:
     realname: 'Sanjay Upadhya'
     sshkeys: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAqqn1SeVuzQIZTski6aeWhH39E7icc35Axb5Hv9E8JXxXmxCIgOk+N9bEVPBB7UQsb7R7gLsbYraeKHNFg9D2n9YPEcUVdBttON2Th5tg/y4nMOxzkoWWLIe9HdrovfpAE+RzA6Ti28zjhddNCsL9ZU5riCJzdI1sXlJD5OmjYMuI+mocAzwh8dHrMrXD5iqzfQoK7FC1XzMuOTwa+so4tZqgeqWStaGgTAfTXmYi/0RIeFG2OXc03khBzLP/gLprlFEHJX4O60gGLEHbfyRk11x+trR9JUobR1FFF0q8JNoeuRW4bKkelCtEGjDry+Qh4yIg4cbBGunlRf3a4VWDqw== sanjayu@partypage-dr'
-    password: '*'
+
+
+apt_mirror_base_url: http://10.135.123.16/
+
+enhancer_packages:
+  - mtr-tiny
+  - tcpdump
+  - screen
+  - vim
+  - emacs23-nox
+  - curl
+  - rsync
+  - git
+  - python-pip
+  - libsensors4-dev
+  - libsensors4
+  - build-essential
+  - python-dev
+
+pip_packages:
+  - Glances
+  - PySensors
+
+scontrol::sources:
+  puppetlabs:
+    location: "%{hiera('apt_mirror_base_url')}puppet/"
+    repos: 'main dependencies'
+    key: '47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30'
+    key_server: 'pgp.mit.edu'
+    include_src: false
+  ubuntu:
+    location: "%{hiera('apt_mirror_base_url')}ubuntu/"
+    release: 'trusty'
+    repos: 'main restricted universe multiverse'
+    include_src: false
+  ubuntu_updates:
+    location: "%{hiera('apt_mirror_base_url')}ubuntu/"
+    release: 'trusty-updates'
+    repos: 'main restricted universe multiverse'
+    include_src: false
+  ubuntu_security:
+    location: "%{hiera('apt_mirror_base_url')}security"
+    release: 'trusty-security'
+    repos: 'main restricted universe multiverse'
+    include_src: false
+

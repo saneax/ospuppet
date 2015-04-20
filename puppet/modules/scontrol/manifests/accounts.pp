@@ -1,5 +1,5 @@
 class scontrol::accounts (
-  $localusers='UNSET',
+  $localusers={},
 ) {
   notice ("$localusers I have")
   $users = hiera ('scontrol::accounts::localusers', {})
