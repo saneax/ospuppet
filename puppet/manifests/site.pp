@@ -1,1 +1,2 @@
-class { "::scontrol": }
+hiera_include('classes')
+#class { "::scontrol": }

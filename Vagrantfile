@@ -30,7 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         config.vm.provision 'shell', :inline =>
          'cp /etc/puppet/hiera.yaml /etc/hiera.yaml'
         config.vm.provision 'shell', :inline =>
-        'puppet apply --verbose --logdest syslog --modulepath /etc/puppet/modules /etc/puppet/manifests/site.pp'
+        'puppet apply --debug --verbose --logdest syslog --modulepath /etc/puppet/modules /etc/puppet/manifests/site.pp'
     end
 end
 
