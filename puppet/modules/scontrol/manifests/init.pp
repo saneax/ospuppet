@@ -7,6 +7,11 @@ class scontrol (
   notice ("what do we have as sources\n [$sources]\n [$e_packages]\n [$p_packages]")
   create_resources ( '::apt::source', $sources )
 
+
+  class { '::sudo':
+    purge               => false,
+    config_file_replace => false,
+  } ->
   class { '::scontrol::accounts': } ->
   class { '::apt':
     purge_sources_list   => true,
