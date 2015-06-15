@@ -18,7 +18,7 @@ scontrol::accounts::localusers:
 
 scontrol::accounts::sudousers: [sanjayu]
 
-apt_mirror_base_url: http://172.16.11.1/
+apt_mirror_base_url: http://172.16.11.1:8000/
 
 enhancer_packages:
   - mtr-tiny
@@ -44,7 +44,7 @@ pip_packages:
 scontrol::sources:
   puppetlabs:
     location: "%{hiera('apt_mirror_base_url')}puppet/"
-    repos: 'main dependencies'
+    repos: 'main'
     key: '47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30'
     key_server: 'pgp.mit.edu'
     include_src: false
@@ -58,9 +58,17 @@ scontrol::sources:
     release: 'trusty-updates'
     repos: 'main restricted universe multiverse'
     include_src: false
-  ubuntu_security:
-    location: "%{hiera('apt_mirror_base_url')}security"
-    release: 'trusty-security'
-    repos: 'main restricted universe multiverse'
+  ubuntu_cloud:
+    location: "%{hiera('apt_mirror_base_url')}ubuntu-cloud/"
+    release: 'trusty-updates/juno'
+    repos: 'main'
+    key: '5EDB1B62EC4926EA'
+    key_server: 'keyserver.ubuntu.com'
     include_src: false
+#  ubuntu_security:
+#    location: "%{hiera('apt_mirror_base_url')}security"
+#    release: 'trusty-security'
+#    repos: 'main restricted universe multiverse'
+#    include_src: false
+ 
 
