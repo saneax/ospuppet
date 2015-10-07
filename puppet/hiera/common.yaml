@@ -18,7 +18,8 @@ scontrol::accounts::localusers:
 
 scontrol::accounts::sudousers: [sanjayu]
 
-apt_mirror_base_url: http://172.16.11.1:8000/
+apt_mirror_ubuntu_url: http://us.archive.ubuntu.com/
+apt_mirror_cloud_url: http://ppa.launchpad.net/openstack-ubuntu-testing/kilo/
 
 enhancer_packages:
   - mtr-tiny
@@ -42,33 +43,26 @@ pip_packages:
   - PySensors
 
 scontrol::sources:
-  puppetlabs:
-    location: "%{hiera('apt_mirror_base_url')}puppet/"
-    repos: 'main'
-    key: '47B320EB4C7C375AA9DAE1A01054B7A24BD6EC30'
-    key_server: 'pgp.mit.edu'
-    include_src: false
   ubuntu:
-    location: "%{hiera('apt_mirror_base_url')}ubuntu/"
+    location: "%{hiera('apt_mirror_ubuntu_url')}ubuntu/"
     release: 'trusty'
     repos: 'main restricted universe multiverse'
     include_src: false
   ubuntu_updates:
-    location: "%{hiera('apt_mirror_base_url')}ubuntu/"
+    location: "%{hiera('apt_mirror_ubuntu_url')}ubuntu/"
     release: 'trusty-updates'
     repos: 'main restricted universe multiverse'
     include_src: false
   ubuntu_cloud:
-    location: "%{hiera('apt_mirror_base_url')}ubuntu-cloud/"
-    release: 'trusty-updates/juno'
+    location: "%{hiera('apt_mirror_cloud_url')}ubuntu"
+    release: 'trusty'
     repos: 'main'
-    key: '5EDB1B62EC4926EA'
+    key: '81DCD8423B6F61A6'
     key_server: 'keyserver.ubuntu.com'
     include_src: false
-#  ubuntu_security:
-#    location: "%{hiera('apt_mirror_base_url')}security"
-#    release: 'trusty-security'
-#    repos: 'main restricted universe multiverse'
-#    include_src: false
- 
+  ubuntu_security:
+    location: "%{hiera('apt_mirror_ubuntu_url')}ubuntu/"
+    release: 'trusty-security'
+    repos: 'main restricted universe multiverse'
+    include_src: false
 
