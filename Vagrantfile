@@ -11,14 +11,21 @@ servers = YAML.load_file('servers.yaml')
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = "ubuntu/trusty64"
+#    config.vm.box = "ubuntu/trusty64"
 
     servers.each do |servers|
         config.vm.define servers["name"] do |srv|
             srv.vm.box = servers["box"]
-            srv.vm.network "private_network", ip: servers["ip1"]
-            srv.vm.network "private_network", ip: servers["ip2"]
-            srv.vm.network "private_network", ip: servers["ip3"]
+            if srv =~ /nt/
+              srv.vm.network "private_network", ip: servers["ip1"]
+              srv.vm.network "private_network", ip: servers["ip2"]
+              srv.vm.network "private_network", ip: servers["ip3"]
+              srv.vm.network "public_network", bridge: "br0:"
+            else
+              srv.vm.network "private_network", ip: servers["ip1"]
+              srv.vm.network "private_network", ip: servers["ip2"]
+              srv.vm.network "private_network", ip: servers["ip3"]
+            end
             srv.vm.hostname = servers["name"]
             srv.vm.provider :virtualbox do |vb|
                 vb.name = servers["name"]
