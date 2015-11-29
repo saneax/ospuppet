@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
         srv.vm.box = box
         srv.vm.hostname = "#{name}.libvirt.vm"
         arr.each do |ip|
-          puts "#{ip} <<--"
+          #puts "#{ip} <<--"
           srv.vm.network :private_network,
             :ip => ip
         end
@@ -58,6 +58,11 @@ Vagrant.configure("2") do |config|
           domain.memory = ram.to_i
           domain.cpus = vcpu.to_i
         end
+        srv.vm.synced_folder("puppet/", "/etc/puppet/")
+        srv.vm.provision 'shell', :inline =>
+        'cp /etc/puppet/hiera.yaml /etc/hiera.yaml'
+        srv.vm.provision 'shell', :inline =>
+        'puppet apply --debug --verbose --logdest syslog --modulepath /etc/puppet/modules /etc/puppet/manifests/site.pp'
       end
     end
   end
