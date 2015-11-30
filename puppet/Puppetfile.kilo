@@ -1,4 +1,12 @@
 # OpenStack modules
+# This is expressely taken from  https://github.com/openstack/puppet-openstack-integration/blob/stable/kilo/Puppetfile
+#mod 'aodh',
+#  :git => 'https://git.openstack.org/openstack/puppet-aodh',
+#  :ref => 'stable/kilo'
+
+#mod 'barbican',
+#  :git => 'https://git.openstack.org/openstack/puppet-barbican',
+#  :ref => 'stable/kilo'
 
 mod 'ceilometer',
   :git => 'https://git.openstack.org/openstack/puppet-ceilometer',
@@ -16,9 +24,9 @@ mod 'glance',
   :git => 'https://git.openstack.org/openstack/puppet-glance',
   :ref => 'stable/kilo'
 
-mod 'gnocchi',
-  :git => 'https://git.openstack.org/openstack/puppet-gnocchi',
-  :ref => 'master'
+#mod 'gnocchi',
+#  :git => 'https://git.openstack.org/openstack/puppet-gnocchi',
+#  :ref => 'stable/kilo'
 
 mod 'heat',
   :git => 'https://git.openstack.org/openstack/puppet-heat',
@@ -40,9 +48,17 @@ mod 'manila',
   :git => 'https://git.openstack.org/openstack/puppet-manila',
   :ref => 'stable/kilo'
 
-mod 'monasca',
-  :git => 'https://git.openstack.org/openstack/puppet-monasca',
-  :ref => 'master'
+#mod 'mistral',
+#  :git => 'https://git.openstack.org/openstack/puppet-mistral',
+#  :ref => 'stable/kilo'
+
+#mod 'monasca',
+#  :git => 'https://git.openstack.org/openstack/puppet-monasca',
+#  :ref => 'stable/kilo'
+
+#mod 'murano',
+#  :git => 'https://git.openstack.org/openstack/puppet-murano',
+#  :ref => 'stable/kilo'
 
 mod 'neutron',
   :git => 'https://git.openstack.org/openstack/puppet-neutron',
@@ -50,6 +66,10 @@ mod 'neutron',
 
 mod 'nova',
   :git => 'https://git.openstack.org/openstack/puppet-nova',
+  :ref => 'stable/kilo'
+
+mod 'openstack_integration',
+  :git => 'https://git.openstack.org/openstack/puppet-openstack-integration',
   :ref => 'stable/kilo'
 
 mod 'openstack_extras',
@@ -84,9 +104,9 @@ mod 'vswitch',
   :git => 'https://git.openstack.org/openstack/puppet-vswitch',
   :ref => 'stable/kilo'
 
-mod 'zaqar',
-  :git => 'https://git.openstack.org/openstack/puppet-zaqar',
-  :ref => 'master'
+#mod 'zaqar',
+#  :git => 'https://git.openstack.org/openstack/puppet-zaqar',
+#  :ref => 'stable/kilo'
 
 # External modules
 
@@ -96,7 +116,7 @@ mod 'apache',
 
 mod 'apt',
   :git => 'https://github.com/puppetlabs/puppetlabs-apt',
-  :branch => '1.8.x'
+  :branch => '2.1.x'
 
 mod 'concat',
   :git => 'https://github.com/puppetlabs/puppetlabs-concat',
@@ -116,7 +136,7 @@ mod 'firewall',
 
 mod 'inifile',
   :git => 'https://github.com/puppetlabs/puppetlabs-inifile',
-  :branch => '1.3.x'
+  :branch => '1.4.x'
 
 mod 'memcached',
   :git => 'https://github.com/saz/puppet-memcached',
@@ -128,7 +148,7 @@ mod 'mongodb',
 
 mod 'mysql',
   :git => 'https://github.com/puppetlabs/puppetlabs-mysql',
-  :branch => '3.4.x'
+  :branch => '3.6.x'
 
 mod 'postgresql',
   :git => 'https://github.com/puppetlabs/puppetlabs-postgresql',

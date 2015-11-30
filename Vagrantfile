@@ -52,7 +52,8 @@ Vagrant.configure("2") do |config|
         if (br_dev and br_type)
           srv.vm.network :public_network,
             :dev => br_dev,
-            :type => br_type
+            :type => br_type,
+            :mode => br_type
         end
         srv.vm.provider :libvirt do |domain|
           domain.memory = ram.to_i
