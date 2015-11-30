@@ -24,6 +24,7 @@ Vagrant.configure("2") do |config|
       box = srv.fetch 'box', nil
       ram = srv.fetch 'ram', nil
       vcpu = srv.fetch 'vcpu', nil
+      nested =srv.fetch 'nested', nil
       provider = srv.fetch 'libvirt', nil
       network_details = srv.fetch 'network', nil
       arr = []
@@ -58,6 +59,7 @@ Vagrant.configure("2") do |config|
         srv.vm.provider :libvirt do |domain|
           domain.memory = ram.to_i
           domain.cpus = vcpu.to_i
+          domain.nested = nested
         end
         srv.vm.synced_folder("puppet/", "/etc/puppet/")
         srv.vm.provision 'shell', :inline =>
