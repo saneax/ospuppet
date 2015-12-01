@@ -18,8 +18,8 @@ scontrol::accounts::localusers:
 
 scontrol::accounts::sudousers: [sanjayu]
 
-apt_mirror_ubuntu_url: http://us.archive.ubuntu.com/
-apt_mirror_cloud_url: http://ppa.launchpad.net/openstack-ubuntu-testing/kilo/
+apt_mirror_ubuntu_url: http://us.archive.ubuntu.com/ubuntu
+apt_mirror_cloud_url: http://ubuntu-cloud.archive.canonical.com/ubuntu
 
 enhancer_packages:
   - mtr-tiny
@@ -44,24 +44,24 @@ pip_packages:
 
 scontrol::sources:
   ubuntu:
-    location: "%{hiera('apt_mirror_ubuntu_url')}ubuntu/"
+    location: "%{hiera('apt_mirror_ubuntu_url')}"
     release: 'trusty'
     repos: 'main restricted universe multiverse'
     include_src: false
   ubuntu_updates:
-    location: "%{hiera('apt_mirror_ubuntu_url')}ubuntu/"
+    location: "%{hiera('apt_mirror_ubuntu_url')}"
     release: 'trusty-updates'
     repos: 'main restricted universe multiverse'
     include_src: false
   ubuntu_cloud:
-    location: "%{hiera('apt_mirror_cloud_url')}ubuntu"
-    release: 'trusty'
+    location: "%{hiera('apt_mirror_cloud_url')}"
+    release: 'trusty-updates/kilo'
     repos: 'main'
-    key: '81DCD8423B6F61A6'
+    key: '0x5edb1b62ec4926ea'
     key_server: 'keyserver.ubuntu.com'
     include_src: false
   ubuntu_security:
-    location: "%{hiera('apt_mirror_ubuntu_url')}ubuntu/"
+    location: "%{hiera('apt_mirror_ubuntu_url')}"
     release: 'trusty-security'
     repos: 'main restricted universe multiverse'
     include_src: false
